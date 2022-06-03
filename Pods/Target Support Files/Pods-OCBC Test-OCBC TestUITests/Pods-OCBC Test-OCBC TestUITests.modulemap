@@ -1,0 +1,6 @@
+framework module Pods_OCBC_Test_OCBC_TestUITests {
+  umbrella header "Pods-OCBC Test-OCBC TestUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
