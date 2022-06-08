@@ -79,12 +79,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func buttonLoginInTapped(_ sender: Any) {
-        if textFieldPassword.hasText && textFieldUsernameEntry.hasText {
-//            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//            let dashboardViewController = storyBoard.instantiateViewController(withIdentifier: "dashboard") as! DashboardViewController
-//            dashboardViewController.modalPresentationStyle = .fullScreen
-//            self.present(dashboardViewController, animated: true, completion: nil)
-        }
+        
+        guard let username = textFieldUsernameEntry.text else {return}
+        guard let password = textFieldPassword.text else {return}
         
         if textFieldUsernameEntry.hasText{
             labelAlertUsername.isHidden = true
@@ -98,7 +95,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             labelAlertPassword.isHidden = false
         }
         
-        loginMethod()
+        
+        let modelLogin = LoginRequest(username: username, password: password)
+        APIManager.shareInstance.callingLoginAPI(login: modelLogin, completion: {response in
+            
+            switch response{
+            case .success(let json):
+                if let objJson = json as? LoginResponse {
+                    let username = objJson.username
+                    let token = objJson.token
+                    let accountNo = objJson.accountNo
+                    
+                    UserDefaults.standard.set(accountNo, forKey: "accountNo")
+                    UserDefaults.standard.set(username, forKey: "account_holder")
+                    UserDefaults.standard.set(token, forKey: "user_token")
+                    
+                }
+                
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let dashboardViewController = storyBoard.instantiateViewController(withIdentifier: "dashboard") as! DashboardViewController
+                dashboardViewController.modalPresentationStyle = .fullScreen
+                self.present(dashboardViewController, animated: true)
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        })
 
       
     }
@@ -112,53 +134,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func loginMethod() {
-        let loginRequest = LoginRequest(username: textFieldUsernameEntry.text ?? "", password: textFieldPassword.text ?? "")
-        let header = HTTPHeaders(["Content-Type":"application/json", "Accept":"application/json"])
-        let loginUrl = URL(string: "https://green-thumb-64168.uc.r.appspot.com/login")
-//        Alamofire.Session().request(loginUrl, method: .post, parameters: loginRequest, encoder: JSONEncoding.default, headers: "").responseJSON(completionHandler: { response in
-//
-//        } )
-        
-        AF.request(loginUrl!, method: .post, parameters: loginRequest, encoder: JSONParameterEncoder.default, headers: header).response(completionHandler: { response in
-//            print("response \(response.debugDescription)")
-            guard let data = response.data else { return }
-            
-            do {
-                let decoder = JSONDecoder()
-                let loginResponse = try decoder.decode(LoginResponse.self, from: data)
-                print("Success request: \(loginResponse)")
-                
-                UserDefaults.standard.set(loginResponse.token, forKey: "user_token")
-                
-                UserDefaults.standard.set(loginResponse.accountNo, forKey: "account_number")
-                
-                UserDefaults.standard.set(loginResponse.username, forKey: "account_holder")
-                
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let dashboardViewController = storyBoard.instantiateViewController(withIdentifier: "dashboard") as! DashboardViewController
-                dashboardViewController.modalPresentationStyle = .fullScreen
-                self.present(dashboardViewController, animated: true, completion: nil)
-                
-            } catch let error {
-                print("Error request: \(error.localizedDescription)")
-            }
-        })
-        
-        //        Alamofire.Session().request(loginUrl!, method: .post, parameters: loginRequest, encoder: JSONParameterEncoder.default, headers: header).response(completionHandler: { response in
-        //            print("response \(response.debugDescription)")
-        //            guard let data = response.data else { return }
-        //
-        //            do {
-        //                let decoder = JSONDecoder()
-        //                let loginResponse = try decoder.decode(LoginResponse.self, from: data)
-        //                print("Success request: \(loginResponse)")
-        //
-        //            } catch let error {
-        //                print("Error request: \(error.localizedDescription)")
-        //            }
-        //        })
-    }
     
 }
 

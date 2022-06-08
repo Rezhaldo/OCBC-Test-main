@@ -167,6 +167,7 @@
 		4D7BCE7528367968008A383B /* OCBC Test */ = {
 			isa = PBXGroup;
 			children = (
+				842F00082850995D0031E06D /* Login */,
 				842F0001285091D40031E06D /* Register */,
 				842F0000285091C70031E06D /* Ultilities */,
 				842FFFFF285091C00031E06D /* Manager */,
@@ -174,7 +175,6 @@
 				4D7BCEA628372522008A383B /* Models */,
 				4D7BCE7628367968008A383B /* AppDelegate.swift */,
 				4D7BCE7828367968008A383B /* SceneDelegate.swift */,
-				4D7BCE7C28367968008A383B /* Main.storyboard */,
 				4D7BCE7F2836796C008A383B /* Assets.xcassets */,
 				4D7BCE812836796C008A383B /* LaunchScreen.storyboard */,
 				4D7BCE842836796C008A383B /* Info.plist */,
@@ -214,7 +214,6 @@
 		4D7BCEA728372531008A383B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4D7BCE7A28367968008A383B /* LoginViewController.swift */,
 				4D7BCEAA2838D4C3008A383B /* TransactionTableViewCell.swift */,
 				4D7BCEAB2838D4C3008A383B /* TransactionTableViewCell.xib */,
 				4D3BDEBC2838DADD005C3F9C /* DashboardViewController.swift */,
@@ -239,6 +238,15 @@
 				842F0002285091F80031E06D /* Register.storyboard */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		842F00082850995D0031E06D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4D7BCE7A28367968008A383B /* LoginViewController.swift */,
+				4D7BCE7C28367968008A383B /* Main.storyboard */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		842FFFFF285091C00031E06D /* Manager */ = {

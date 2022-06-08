@@ -41,4 +41,33 @@ class APIManager {
         })
     
     }
+    
+    func callingLoginAPI(login : LoginRequest, completion: @escaping Handler) {
+        let headers = HTTPHeaders(["Content-Type":"application/json", "Accept":"application/json"])
+
+        
+        AF.request(login_url!, method: .post, parameters: login, encoder: JSONParameterEncoder.default, headers: headers).response (completionHandler: { response in
+            guard let data = response.data else { return }
+
+            do {
+
+                let decoder = JSONDecoder()
+                let loginResponse =
+                try decoder.decode(LoginResponse.self, from: data)
+                print("succes: \(loginResponse)")
+                
+                if response.response?.statusCode == 200{
+                    completion(.success(loginResponse))
+                }else {
+                    completion(.failure(.custom(message: "Fail to connect, try again.")))
+                }
+                
+            } catch let error {
+                print("Error Request: \(error.localizedDescription)")
+            }
+        })
+
+    }
+
+    
 }
