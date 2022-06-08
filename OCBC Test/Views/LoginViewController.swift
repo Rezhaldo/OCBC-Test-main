@@ -105,7 +105,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func buttonRegisterInTapped(_ sender: Any) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Register", bundle: nil)
         let registerViewController = storyBoard.instantiateViewController(withIdentifier: "register") as! RegisterViewController
         registerViewController.modalPresentationStyle = .fullScreen
         self.present(registerViewController, animated: true, completion: nil)

@@ -23,7 +23,6 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         
         RegisterView()
     }
@@ -52,29 +51,28 @@ class RegisterViewController: UIViewController {
             labelAlertConfirmPassword.isHidden = false
         }
         
-        let registerRequest = RegisterRequest(username: textFieldUsername.text ?? "", password: textFieldPassword.text ?? "")
+        guard let username = self.textFieldUsername.text else {return}
+        guard let password = self.textFieldPassword.text else {return}
+
         
-        let header = HTTPHeaders(["Content-Type":"application/json", "Accept":"application/json"])
-        let registerUrl = URL(string: "https://green-thumb-64168.uc.r.appspot.com/register")
-        
-        AF.request(registerUrl!, method: .post, parameters: registerRequest, encoder: JSONParameterEncoder.default, headers: header).response(completionHandler: { response in
+        let register = RegisterRequest(username: username, password: password)
+        APIManager.shareInstance.callingRegisterAPI(register: register, completion: {response in
             
-            guard let data = response.data else { return }
-            
-            do {
-                let decoder = JSONDecoder()
-                let registerResponse =
-                try decoder.decode(RegisterResponse.self, from: data)
-                print(registerResponse)
+            switch response{
+            case .success(let json):
+                if let objJson = json as? RegisterResponse {
+                    print(objJson)
+                }
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let dashboardViewController = storyBoard.instantiateViewController(withIdentifier: "login") as! LoginViewController
+                let dashboardViewController=storyBoard.instantiateViewController(withIdentifier:"login") as! LoginViewController
                 dashboardViewController.modalPresentationStyle = .fullScreen
                 self.present(dashboardViewController, animated: true, completion: nil)
-                
-            } catch let error {
-                print("Error Request: \(error.localizedDescription)")
+            case .failure(let err):
+                print(err.localizedDescription)
             }
         })
+        
+        
     }
     
     func RegisterView() {

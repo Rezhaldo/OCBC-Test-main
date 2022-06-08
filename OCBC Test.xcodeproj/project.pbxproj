@@ -26,6 +26,9 @@
 		4D7BCE9A2836796C008A383B /* OCBC_TestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7BCE992836796C008A383B /* OCBC_TestUITestsLaunchTests.swift */; };
 		4D7BCEAC2838D4C3008A383B /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7BCEAA2838D4C3008A383B /* TransactionTableViewCell.swift */; };
 		4D7BCEAD2838D4C3008A383B /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D7BCEAB2838D4C3008A383B /* TransactionTableViewCell.xib */; };
+		842F0003285091F80031E06D /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842F0002285091F80031E06D /* Register.storyboard */; };
+		842F0005285093240031E06D /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F0004285093240031E06D /* APIManager.swift */; };
+		842F0007285093340031E06D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F0006285093340031E06D /* Constant.swift */; };
 		84DAE0DD2849F0D60058761F /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DAE0DC2849F0D60058761F /* File.swift */; };
 		A6AEBA940A4C35C8C705B0CA /* Pods_OCBC_TestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA74C2CFE0C6CA753EEE0E7 /* Pods_OCBC_TestTests.framework */; };
 		B733102D148C2E1C95E54C9F /* Pods_OCBC_Test_OCBC_TestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16169E0303BEE08A08C59E9 /* Pods_OCBC_Test_OCBC_TestUITests.framework */; };
@@ -78,6 +81,9 @@
 		6CC59F11B6E27CDF7E8D2898 /* Pods-OCBC Test-OCBC TestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCBC Test-OCBC TestUITests.debug.xcconfig"; path = "Target Support Files/Pods-OCBC Test-OCBC TestUITests/Pods-OCBC Test-OCBC TestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7EA74C2CFE0C6CA753EEE0E7 /* Pods_OCBC_TestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OCBC_TestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ECB67B2692965C9606AB84C /* Pods_OCBC_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OCBC_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		842F0002285091F80031E06D /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
+		842F0004285093240031E06D /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		842F0006285093340031E06D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		84DAE0DC2849F0D60058761F /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		99ADAA906E532BF29A74CD7D /* Pods-OCBC Test-OCBC TestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCBC Test-OCBC TestUITests.release.xcconfig"; path = "Target Support Files/Pods-OCBC Test-OCBC TestUITests/Pods-OCBC Test-OCBC TestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AB6D5B909893F78D859F6D6F /* Pods-OCBC Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCBC Test.release.xcconfig"; path = "Target Support Files/Pods-OCBC Test/Pods-OCBC Test.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +167,9 @@
 		4D7BCE7528367968008A383B /* OCBC Test */ = {
 			isa = PBXGroup;
 			children = (
+				842F0001285091D40031E06D /* Register */,
+				842F0000285091C70031E06D /* Ultilities */,
+				842FFFFF285091C00031E06D /* Manager */,
 				4D7BCEA728372531008A383B /* Views */,
 				4D7BCEA628372522008A383B /* Models */,
 				4D7BCE7628367968008A383B /* AppDelegate.swift */,
@@ -209,11 +218,35 @@
 				4D7BCEAA2838D4C3008A383B /* TransactionTableViewCell.swift */,
 				4D7BCEAB2838D4C3008A383B /* TransactionTableViewCell.xib */,
 				4D3BDEBC2838DADD005C3F9C /* DashboardViewController.swift */,
-				4D3BDEC2283A8F59005C3F9C /* RegisterViewController.swift */,
 				4D3BDED4283E15AF005C3F9C /* TransferViewController.swift */,
 				84DAE0DC2849F0D60058761F /* File.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		842F0000285091C70031E06D /* Ultilities */ = {
+			isa = PBXGroup;
+			children = (
+				842F0006285093340031E06D /* Constant.swift */,
+			);
+			path = Ultilities;
+			sourceTree = "<group>";
+		};
+		842F0001285091D40031E06D /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				4D3BDEC2283A8F59005C3F9C /* RegisterViewController.swift */,
+				842F0002285091F80031E06D /* Register.storyboard */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		842FFFFF285091C00031E06D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				842F0004285093240031E06D /* APIManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,6 +362,7 @@
 				4D7BCE802836796C008A383B /* Assets.xcassets in Resources */,
 				4D7BCEAD2838D4C3008A383B /* TransactionTableViewCell.xib in Resources */,
 				4D7BCE7E28367968008A383B /* Main.storyboard in Resources */,
+				842F0003285091F80031E06D /* Register.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,10 +492,12 @@
 			files = (
 				4D3BDEC9283B482A005C3F9C /* TransactionModel.swift in Sources */,
 				4D7BCE7B28367968008A383B /* LoginViewController.swift in Sources */,
+				842F0007285093340031E06D /* Constant.swift in Sources */,
 				4D3BDEBF2839EC4A005C3F9C /* LoginModel.swift in Sources */,
 				4D7BCE7728367968008A383B /* AppDelegate.swift in Sources */,
 				4D3BDED3283E138D005C3F9C /* PayeeModel.swift in Sources */,
 				4D3BDEC4283A8F59005C3F9C /* RegisterViewController.swift in Sources */,
+				842F0005285093240031E06D /* APIManager.swift in Sources */,
 				4D3BDEBD2838DADD005C3F9C /* DashboardViewController.swift in Sources */,
 				4D3BDED5283E15AF005C3F9C /* TransferViewController.swift in Sources */,
 				4D3BDEC12839F807005C3F9C /* BalanceModel.swift in Sources */,
