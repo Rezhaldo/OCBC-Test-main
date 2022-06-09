@@ -15,7 +15,10 @@ enum APIErros: Error {
 typealias Handler = (Swift.Result<Any?, APIErros>) -> Void
 
 class APIManager {
+    var username: String = ""
     static let  shareInstance = APIManager()
+    let userToken = UserDefaults.standard.string(forKey: "user_token") ?? ""
+    
     
     func callingRegisterAPI(register : RegisterRequest, completion: @escaping Handler) {
         let headers = HTTPHeaders(["Content-Type":"application/json", "Accept":"application/json"])
@@ -68,6 +71,39 @@ class APIManager {
         })
 
     }
+    
+    func callingBalanceAPI(completionHandeler: @escaping Handler) {
+        let headers = HTTPHeaders(["Content-Type":"application/json", "Accept":"application/json", "Authorization": userToken])
+        
+        AF.request(balance_url!, method: .get, headers: headers).response (completionHandler: { response in
+            guard let data = response.data else { return }
+            
+            
+            do {
+                
 
+                let decoder = JSONDecoder()
+                let balanceResponse =
+                try decoder.decode(BalanceResponse.self, from: data)
+                
+                if response.response?.statusCode == 200{
+                    completionHandeler(.success(balanceResponse))
+                }else {
+                    completionHandeler(.failure(.custom(message: "Fail to connect, try again.")))
+                }
+                
+//                if response.response?.statusCode == 401{
+//                    completionHandeler(.success(balanceResponse.error))
+//                }else {
+//                    completionHandeler(.failure(.custom(message: "NIL")))
+//                }
+
+               
+            } catch let error {
+                print("Error Request: \(error.localizedDescription)")
+            }
+        })
+
+    }
     
 }

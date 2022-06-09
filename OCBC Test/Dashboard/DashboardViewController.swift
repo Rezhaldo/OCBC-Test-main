@@ -38,30 +38,37 @@ class DashboardViewController: UIViewController {
         
         let userToken = UserDefaults.standard.string(forKey: "user_token") ?? ""
         
-        let accountHolder = UserDefaults.standard.string(forKey: "account_holder")
+        APIManager.shareInstance.callingBalanceAPI(completionHandeler: { response in
+            
+            switch response {
+            case.success(let json):
+                if let objJson = json as? BalanceResponse {
+                    let getBalance = objJson.balance
+                    print("You get",objJson.balance, objJson.accountNo)
+                    self.labelAmountBalance.text = "\(getBalance)"
+                    
+                }
+                if let username = UserDefaults.standard.string(forKey: "account_holder") {
+                    self.labelAccountHolder.text = username
+                    print("teste \(username)")
+                    
+                }
+                
+                if let accountNo = UserDefaults.standard.string(forKey: "accountNo") {
+                    self.labelNumberOfAccount.text = accountNo
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        })
         
-        let balanceURL = URL(string: "https://green-thumb-64168.uc.r.appspot.com/balance")
+
         
         let transactionURL = URL(string: "https://green-thumb-64168.uc.r.appspot.com/transactions")
         
         let header = HTTPHeaders(["Content-Type":"application/json", "Accept":"application/json", "Authorization": userToken])
         
                            
-        AF.request(balanceURL!, method: .get, headers: header).response(completionHandler: { response in
-            
-            guard let data = response.data else { return }
-            
-            do {
-                let decoder = JSONDecoder()
-                let balanceResponse = try decoder.decode(BalanceResponse.self, from: data)
-                    print(balanceResponse)
-                self.labelAmountBalance.text = "\(balanceResponse.balance)"
-                self.labelNumberOfAccount.text = "\(balanceResponse.accountNo)"
-                self.labelAccountHolder.text = accountHolder
-            } catch let error {
-                print("Error Request: \(error.localizedDescription)")
-            }
-        })
         
         AF.request(transactionURL!, method: .get, headers: header).response(completionHandler: { response in
             guard let data = response.data else { return }

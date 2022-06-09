@@ -112,7 +112,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     
                 }
                 
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Dashboard", bundle: nil)
                 let dashboardViewController = storyBoard.instantiateViewController(withIdentifier: "dashboard") as! DashboardViewController
                 dashboardViewController.modalPresentationStyle = .fullScreen
                 self.present(dashboardViewController, animated: true)

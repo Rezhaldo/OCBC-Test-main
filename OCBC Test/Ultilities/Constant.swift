@@ -7,6 +7,9 @@
 
 import Foundation
 
+var useee =  LoginViewController()
+
+
 let base_url = "https://green-thumb-64168.uc.r.appspot.com/"
 let register_url = URL(string: "\(base_url)register")
 let login_url = URL(string: "\(base_url)login")
