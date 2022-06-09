@@ -170,7 +170,6 @@
 				842F0001285091D40031E06D /* Register */,
 				842F0000285091C70031E06D /* Ultilities */,
 				842FFFFF285091C00031E06D /* Manager */,
-				4D7BCEA728372531008A383B /* Views */,
 				4D7BCEA628372522008A383B /* Models */,
 				4D7BCE7628367968008A383B /* AppDelegate.swift */,
 				4D7BCE7828367968008A383B /* SceneDelegate.swift */,
@@ -210,15 +209,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		4D7BCEA728372531008A383B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				4D7BCEAA2838D4C3008A383B /* TransactionTableViewCell.swift */,
-				4D7BCEAB2838D4C3008A383B /* TransactionTableViewCell.xib */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		842F0000285091C70031E06D /* Ultilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,10 +238,20 @@
 		842F000B2850A1590031E06D /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				842F000E28519B780031E06D /* Cell */,
 				4D3BDEBC2838DADD005C3F9C /* DashboardViewController.swift */,
 				842F000C285198CF0031E06D /* Dashboard.storyboard */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		842F000E28519B780031E06D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4D7BCEAB2838D4C3008A383B /* TransactionTableViewCell.xib */,
+				4D7BCEAA2838D4C3008A383B /* TransactionTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		842FFFFF285091C00031E06D /* Manager */ = {

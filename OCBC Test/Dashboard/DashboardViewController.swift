@@ -116,11 +116,6 @@ extension DashboardViewController: UITableViewDelegate, UITableViewDataSource {
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "MMM dd,yyyy"
         
-//        if let data = transactionData?.data, data.count > 0 {
-//            print("there is data")
-//        } else {
-//            print("there is no data")
-//        }
         
         if let tran = transactionData?.data[section] {
             if let dateStr = tran.transactionDate {
