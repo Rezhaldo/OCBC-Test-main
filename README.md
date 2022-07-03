@@ -21,23 +21,7 @@ This is Project for Glints Assignment
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-  
-      <ul>
-        
-      </ul>
-    </li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#usage-and-impelementation">Usage and Impelementation</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
+ 
 </details>
 
 
